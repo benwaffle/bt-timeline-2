@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stevens Tech</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    body, html {
+      font-family: sans-serif;
+    }
+
+    #visualization {
+      border: 2px solid black;
+      margin-bottom: 30px;
+    }
+
+    .vis-item {
+      border-radius: 6px !important;
+      text-align: center;
+      border: 2px solid black;
+    }
+
+    .vis-item.vis-background {
+      padding-top: 10px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+  </style>
+
+</head>
+<body>
+<h1>Stevens 'Tech' Rebranding Timeline</h1>
+<div id="visualization"></div>
+<center>
+  <img src="https://www.stevens.edu/sites/all/themes/stevens/images/favicons/apple-touch-icon-180x180.png" />
+</center>
+
+<script type="text/javascript">
+  // DOM element where the Timeline will be attached
+  var container = document.getElementById('visualization');
+
+  // Create a DataSet (allows two way data-binding)
+  var x = [
+    {content: 'Logo Design Contest', start: 'January 1, 2017', end: 'February 1, 2017'},
+    {content: 'Destroy Lieb', start: 'January 1, 2017', end: 'May 1, 2017'},
+    {content: 'Build Gateway', start: 'June 1, 2017', end: 'June 1, 2019'},
+    {content: 'Marketing', start: 'June 1, 2017', end: 'June 1, 2020'},
+    {content: 'Introduction of New Class', start: 'September 1, 2017', end: 'June 1, 2019'},
+  ];
+
+  var items = new vis.DataSet(x);
+
+  // Create a Timeline
+  var timeline = new vis.Timeline(container);
+  timeline.setItems(items);
+  timeline.setOptions({
+    showCurrentTime: false
+  });
+</script>
+</body>
+</html>
