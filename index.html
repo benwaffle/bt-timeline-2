@@ -26,6 +26,13 @@
       padding-top: 10px;
     }
 
+    .logo { background: #a7e6ff; }
+    .lieb { background: #ff9e9e; }
+    .gateway { background: #d5ddf6; }
+    .apparel { background: #d29bff; }
+    .marketing { background: #bcffc0; }
+    .newclasses { background: #ffd994; }
+
     h1 {
       text-align: center;
     }
@@ -42,20 +49,30 @@
 <script type="text/javascript">
   // DOM element where the Timeline will be attached
   var container = document.getElementById('visualization');
+  
+  var GATEWAY = 1,
+      BRAND = 2;
 
   // Create a DataSet (allows two way data-binding)
   var x = [
-    {content: 'Logo Design Contest', start: 'January 1, 2017', end: 'February 1, 2017'},
-    {content: 'Destroy Lieb', start: 'January 1, 2017', end: 'May 1, 2017'},
-    {content: 'Build Gateway', start: 'June 1, 2017', end: 'June 1, 2019'},
-    {content: 'Marketing', start: 'June 1, 2017', end: 'June 1, 2020'},
-    {content: 'Introduction of New Class', start: 'September 1, 2017', end: 'June 1, 2019'},
+    {content: 'Logo Design Contest', start: 'January 1, 2017', end: 'February 1, 2017', className: 'logo', group: BRAND},
+    {content: 'Destroy Lieb<br><small>$200 K</small>', start: 'April 1, 2017', end: 'August 1, 2017', className: 'lieb', group: GATEWAY},
+    {content: 'Build Gateway<br><small>$50 M</small>', start: 'August 1, 2017', end: 'June 1, 2019', className: 'gateway', group: GATEWAY},
+    {content: 'Buy New Apparel<br><small>$13 K</small>', start: 'March 1, 2017', end: 'May 1, 2017', className: 'apparel', group: BRAND},
+    {content: 'Marketing', start: 'June 1, 2017', end: 'June 1, 2020', className: 'marketing', group: BRAND},
+    {content: 'Introduction of New Classes<br><small>$25 M / year</small>', start: 'September 1, 2019', end: 'June 1, 2024', className: 'newclasses', group: GATEWAY},
+    {content: 'Build North Building', start: 'January 1, 2017', end: 'April 1, 2017', className: 'gateway', group: GATEWAY},
   ];
 
   var items = new vis.DataSet(x);
+  var groups = new vis.DataSet([
+      {id: GATEWAY, content: 'Gateway Building'},
+      {id: BRAND, content: 'Branding'},
+  ]);
 
   // Create a Timeline
   var timeline = new vis.Timeline(container);
+  timeline.setGroups(groups);
   timeline.setItems(items);
   timeline.setOptions({
     showCurrentTime: false
